@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -17,10 +18,13 @@ import java.util.List;
 @RequestMapping("events")
 public class EventController {
 
-    private static List<String> events = new ArrayList<>();
-
+//    private static List<String> events = new ArrayList<>();
+private static HashMap<String, String> events = new HashMap<>();
     @GetMapping
-    public String displayEvents(Model model){
+    public String displayAllEvents(Model model){
+        events.put("CodeConfuzled", "we write outdated code, you fix it!");
+        events.put("Tacos and Textboxes", "eat as many tacos as you can while coding as fast as you can!");
+        events.put("Implementation Instrumentation", "can you code using a piano? lets find out...");
         model.addAttribute("events", events);
         return "events/index";
     }
@@ -34,7 +38,7 @@ public class EventController {
     //lives at /events/create
     @PostMapping("create")
     public String createEvent(@RequestParam String eventName) {
-        events.add(eventName);
+//        events.add(eventName);
         return "redirect:";
     }
 
